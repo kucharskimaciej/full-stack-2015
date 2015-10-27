@@ -1,5 +1,5 @@
 Meteor.publish("userProfiles", function () {
-	console.log('publishing')
+	console.log('publishing');
 	if (!this.userId) return [];
 	
 	var cursor =  Meteor.users.find({},

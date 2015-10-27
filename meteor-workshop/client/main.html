@@ -1,27 +1,54 @@
 <head>
-  <title>devtank</title>
+  <title>Fullstack</title>
 </head>
 
 <body>
-  <h1>Welcome to DevTank!</h1>
+  	<div class="container">
+		<div class="row">
+			<div class="col-xs-12">
+				<h1>Welcome to Fullstack!</h1>
+				{{> app}}
+			</div>
+		</div>
+	</div>
 
-  {{> devtank}}
 </body>
 
-<template name="devtank">
-	{{#unless currentUser}}
-		<button class="btn btn-lrg btn-primary register">Register</button>
+<template name="login">
+	<nav class="text-right l-island">
+		{{#unless currentUser}}
+			<button class="btn btn-lg btn-primary" action="signup">Register</button>
+		{{else}}
+			<a class="btn btn-lg btn-link signout" action="signout">Log out</a>
+		{{/unless}}
+	</nav>
+</template>
 
-	{{/unless}}
-	<div>
+<template name="app">
+	{{> login}}
+
+	{{#if currentUser}}
+		<section class="interests l-island">
+			{{> editInterests}}
+		</section>
+	{{/if}}
+
+	<div class="media-list l-island">
 		{{#each users}}
-			<img src="{{profile.picture}}"/>
+			<div class="media">
+				<div class="media-left">
+					<a href="#">
+						<img class="media-object" width="100" src="{{ profile.picture }}" alt="...">
+					</a>
+				</div>
+				<div class="media-body">
+					<h4 class="media-heading">{{ profile.name }}</h4>
+					What bout him?
+				</div>
+			</div>
 		{{/each}}
 	</div>
-	{{#if currentUser}}
-		<a href="#" class="signout">Log out</a>
-  		{{> editInterests}}
-	{{/if}}
+
 </template>
 
 <template name="editInterests">

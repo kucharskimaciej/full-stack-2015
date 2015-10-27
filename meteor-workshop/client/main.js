@@ -1,16 +1,16 @@
-Template.devtank.onCreated(function() {
+Template.app.onCreated(function() {
 	Meteor.subscribe("userProfiles");
 	Meteor.subscribe("interests");
 });
 
-Template.devtank.helpers({
+Template.app.helpers({
 	users: function() {
 		return Meteor.users.find();
 	}
 });
 
-Template.devtank.events({
-	"click button.register" : function() {
+Template.login.events({
+	"click [action=signup]" : function() {
 		var permissions = {
 		    requestPermissions: "profile",
 		    include_granted_scopes: true,
@@ -24,7 +24,7 @@ Template.devtank.events({
 	    	}
 		});
 	},
-	"click .signout" : function(e) {
+	"click [action=signout]" : function(e) {
 		e.preventDefault();
 		Meteor.logout();
 	}

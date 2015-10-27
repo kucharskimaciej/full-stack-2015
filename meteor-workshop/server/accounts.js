@@ -1,5 +1,5 @@
 Accounts.onCreateUser(function(options,user) {
-	console.log('creating new user '+user._id)
+	console.log('creating new user '+user._id);
 	// Add Google account info to profile
 	var profile = _.pick(user.services.google,
 		"name",
