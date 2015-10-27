@@ -1,0 +1,37 @@
+<head>
+  <title>devtank</title>
+</head>
+
+<body>
+  <h1>Welcome to DevTank!</h1>
+
+  {{> devtank}}
+</body>
+
+<template name="devtank">
+	{{#unless currentUser}}
+		<button class="btn btn-lrg btn-primary register">Register</button>
+
+	{{/unless}}
+	<div>
+		{{#each users}}
+			<img src="{{profile.picture}}"/>
+		{{/each}}
+	</div>
+	{{#if currentUser}}
+		<a href="#" class="signout">Log out</a>
+  		{{> editInterests}}
+	{{/if}}
+</template>
+
+<template name="editInterests">
+	{{#autoForm collection="Interests" doc=interest id="updateInterests" type="update"}}
+		<fieldset>
+		    <legend>Update your interests</legend>
+		    {{> afQuickField name='hobbies'}}
+		    {{> afQuickField name='pet'}}
+		    {{> afQuickField name='movie'}}
+		  </fieldset>
+		  <button type="submit" class="btn btn-primary">Update</button>
+	{{/autoForm}}
+</template>
